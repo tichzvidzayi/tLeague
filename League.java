@@ -52,27 +52,27 @@ class League {
         String teamA = res[0];
         String teamB = res[1];
 
-        Map<String, Integer> namesAges = new HashMap<>();
+        Map<String, Integer> table = new HashMap<>();
 
 		// storing the values
-        namesAges.put("Juventus FC", 1);
-        namesAges.put("Bayern Munich FC", 80);
-		namesAges.put("Norwich City FC", 38);
-		namesAges.put("Manchester United", 100);
-		namesAges.put("Chelsea FC", 78);
-        printLeagueTable(namesAges);
+        table.put("Juventus FC", 1);
+        table.put("Bayern Munich FC", 80);
+		table.put("Norwich City FC", 38);
+		table.put("Manchester United", 100);
+		table.put("Chelsea FC", 78);
+        printLeagueTable(table);
     }
 
-    private static void printLeagueTable(Map<String, Integer> namesAges) {
+    private static void printLeagueTable(Map<String, Integer> table) {
     
-    	Map<String, Integer> ht = namesAges.entrySet()
+    	Map<String, Integer> lTable = table.entrySet()
 			.stream()
 			.sorted(Collections.reverseOrder(Entry.comparingByValue()))
 			.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue(),
 					(entry1, entry2) -> entry2, LinkedHashMap::new));
          int position =1;
-		for (Map.Entry<String, Integer> entry : ht.entrySet()) {
-			System.out.println(position++ + ". " + entry.getKey() + ", " +
+		for (Map.Entry<String, Integer> entry : lTable.entrySet()) {
+			System.out.println(position++  + ". " + entry.getKey() + ", " +
                                            entry.getValue().toString() + 
                                        ( ( entry.getValue() == 1)? " pt" : " pts"));
 		}
