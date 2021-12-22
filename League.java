@@ -7,21 +7,23 @@ import java.io.IOException;
 class League {
     public static void main(String[] args) throws IOException {
         
-
-        BufferedReader br = new BufferedReader(new FileReader( args[0]));
-        try {
+        BufferedReader buf; 
+        try { 
+            buf = new BufferedReader(new FileReader( args[0]));
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = buf.readLine()) != null) {
                System.out.println(line + "  :");
             }
-            br.close();
+            buf.close();
+           
         } 
         
-        catch(FileNotFoundException e)
+        catch(Exception e)
         {
-            System.out.println(" Oops, you have to include the file name gor args[0] \n e.g, java League input.txt");      
+        System.out.println( String.format(e.toString() + " \n Oops!! Please include a valid filename.\n " +
+                                        "For example => java League input.txt"));      
         }
-        
+        //finally{ }
  
          
         
