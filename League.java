@@ -14,8 +14,16 @@ class League {
             while ((line = br.readLine()) != null) {
                System.out.println(line + "  :");
             }
-        } finally {
             br.close();
+        } 
+        
+        catch(FileNotFoundException e)
+        {
+            System.out.println(" Oops, you have to include the file name gor args[0] \n e.g, java League input.txt");      
         }
+        
+ 
+         
+        
     }
 }
