@@ -55,8 +55,8 @@ private static String[] ParseResult(String game) {
  String[] res = game.split(",", 2);  
  String teamA = res[0].trim(); 
  String teamB = res[1].trim();
-int scoreA = Integer.parseInt( teamA.substring( teamA.lastIndexOf(" ") + 1));
-int scoreB = Integer.parseInt(teamB.substring( teamB.lastIndexOf(" ") + 1));
+ int scoreA = Integer.parseInt( teamA.substring( teamA.lastIndexOf(" ") + 1));
+ int scoreB = Integer.parseInt(teamB.substring( teamB.lastIndexOf(" ") + 1));
 /* Calculates the points according to the game rules 
    win =3, lose =0, draw =0
 */
