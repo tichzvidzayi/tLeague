@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 */
 
 class League {
-
-    
     public static void main(String[] args) throws IOException {
         Map<String, Integer> table = new HashMap<>();
         BufferedReader buf; 
@@ -90,18 +88,19 @@ private static void printLeagueTable(Map<String, Integer> table) {
 			.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue(),
 					(entry1, entry2) -> entry2, LinkedHashMap::new));
 // Sorts the League table in descending order according to values (points)              
-    int position =1;
+    int position =0, previous = 0;
 
-// Prints the elements of the table according to the game rules.
+// Prints the elements of the table according to the game rules e.g. same point ==same position
 	for (Map.Entry<String, Integer> entry : lTable.entrySet()) {
-			System.out.println(position++  + ". " + entry.getKey() + ", " +
+
+          position = previous == entry.getValue() ? position : ++position ;
+           
+			System.out.println(position  + ". " + entry.getKey() + ", " +
                                            entry.getValue().toString() + 
-                                       ( ( entry.getValue() == 1)? " pt" : " pts"));
+                                      ( ( entry.getValue() == 1)? " pt" : " pts"));
 
-
-
-
-
+            previous = entry.getValue();
+  
 		}
     }
 

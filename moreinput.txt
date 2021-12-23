@@ -1,0 +1,47 @@
+Lions 3, Snakes 3
+Tarantulas 1, FC Awesome 0
+Lions 1, FC Awesome 1
+Tarantulas 3, Snakes 1
+Lions 4, Grouches 0
+Snakes 2, Lions 1
+FC Awesome 3, Tarantulas 3
+FC Awesome 0, Lions 1
+Snakes 0, Tarantulas 0
+Grouches 2, Lions 1
+Lions 1, Snakes 1
+Dolphins 1804 FC 10, Snakes 1
+FC Awesome 1, Dolphins 1804 FC 1
+Snakes 2, Dolphins 1804 FC 1
+Dolphins 1804 FC 4, Grouches 0
+Dolphins 1804 FC 1, FC Awesome 12
+Dolphins 1804 FC 3, Snakes 1
+Grouches 2, Manchester Utd FC 2
+FC Awesome 1, Manchester Utd FC 2
+Manchester Utd FC 4, Grouches 0
+Manchester Utd FC 1, FC Awesome 0
+Manchester Utd FC 13, Snakes 1
+Manchester Utd FC 1, Manchester City FC 1
+Manchester City FC 4, Manchester Utd FC 4
+Manchester City FC 6, Tarantulas 0
+Chelsea FC 3, Manchester Utd FC 2
+Manchester Utd FC 4, Chelsea FC 0
+Chelsea FC 3, Tarantulas 3
+Chelsea FC 11, Lions 2
+Chelsea FC 3, Bayern Munich FC 2
+Chelsea FC 4, Bayern Munich FC 2
+Manchester City FC 6, Bayern Munich FC 4
+Bayern Munich FC 4, Chelsea FC 0
+Bayern Munich FC 1, FC Awesome 0
+Bayern Munich FC 3, Manchester City FC 1
+Lions 3, Bayern Munich FC 2
+Snakes 2, Lions 1
+2000 Future FC 3, Tarantulas 3
+2000 Future FC 0, Lions 1
+Snakes 0, Tarantulas 0
+2000 Future FC 2, Lions 1
+Lions 1, Snakes 1
+2000 Future FC 3, Tarantulas 3
+2000 Future FC 11, Lions 2
+2000 Future FC 3, Bayern Munich FC 2
+2000 Future FC 4, Bayern Munich FC 2
+Chelsea FC 2, Grouches 2
