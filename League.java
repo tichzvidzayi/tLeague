@@ -1,143 +1,108 @@
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.http.HttpHeaders;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+/*
+        Author : Tichaona Zvidzayi
+        Date Last Modified  23 December 2021
+        Description: A Java CLI application that calculates League results according to results
+            Win = 3pts, Lose = 0pts, Draw =1
 
-import javax.lang.model.util.ElementScanner14;
-
+        Compile using :   javac League.java
+        Run           :   java League <input file>
+*/
 
 class League {
 
     
     public static void main(String[] args) throws IOException {
-        
-       /* BufferedReader buf; 
-       
-        try { 
-            buf = new BufferedReader(new FileReader( args[0]));
-
-        }  catch(Exception e)
-        {
-        System.out.println( String.format(e.toString() + " \n Oops!! Please include a valid filename.\n " +
-                                        "For example => java League input.txt"));      
-        }
-   */
-
         Map<String, Integer> table = new HashMap<>();
-        BufferedReader buf = new BufferedReader(new FileReader( args[0]));
-            String game;
-            while ((game = buf.readLine()) != null) {
-               // game = game.replaceAll("\\s", "");
-
+        BufferedReader buf; 
+        String game;
+        // The try catches exceptions such as IndexOutofRange, IOExceptions etc and print the error
+        try {  
+            buf = new BufferedReader(new FileReader( args[0]));   
+            while ((game = buf.readLine()) != null)
+             {
                String []result = ParseResult(game); 
-              
+               // Computes the points is already present 
                table.computeIfPresent(result[0], (k, v) -> v + Integer.parseInt(result[1]));
                table.computeIfPresent(result[2], (k, v) -> v + Integer.parseInt(result[3]));
                
+               // Creates a new team and adds name and points
                table.computeIfAbsent(result[0], k -> Integer.parseInt(result[1]));
                table.computeIfAbsent(result[2], k -> Integer.parseInt(result[3]));
-
-
             }
-            buf.close();
+            // Closes the input file
+            buf.close();  
 
-
-         /*   table.put("Juventus FC", 1);
-           table.put("Bayern Munich FC", 80);
-            table.put("Norwich City FC", 38);
-            table.put("Manchester United", 100);
-            table.put("Chelsea FC", 78);
-   */
-         printLeagueTable(table);
-           
-        
-        
-      
-        //finally{ }
- 
-       
-
-
-        
+        }  catch(Exception e)
+        {
+            // Catches and prints the error 
+            System.out.println(e);      
+        }
+          // Prints the league table
+         printLeagueTable(table);      
     }
 
-    private static String[] ParseResult(String game) {
+private static String[] ParseResult(String game) {
 
-
-        String[] res = game.split(",", 2);  
-
-String teamA = res[0].trim(); // { FC Lions99 4}
-String teamB = res[1].trim();
-//  int t1 = Integer.parseInt( res[0].split(" ", 2)[1] );
-
+ // Parse each line of the file to get the team name and scores   
+ String[] res = game.split(",", 2);  
+ String teamA = res[0].trim(); 
+ String teamB = res[1].trim();
 int scoreA = Integer.parseInt( teamA.substring( teamA.lastIndexOf(" ") + 1));
 int scoreB = Integer.parseInt(teamB.substring( teamB.lastIndexOf(" ") + 1));
-//System.out.println(scoreA + ":" + scoreB );
+/* Calculates the points according to the game rules 
+   win =3, lose =0, draw =0
+*/
 int pointsA =0, pointsB=0;
-if ( scoreA > scoreB)
-     pointsA=3;
-else if(scoreA<scoreB)
-    pointsB=3;
-else
-{
-   pointsA=1;
-   pointsB=1;
-}
-
-
-//String nameA = teamA.substring(0,  teamA.lastIndexOf(" ")+ 1);  
-//String nameB = teamB.substring(0,  teamB.lastIndexOf(" ")+ 1);  
-//System.out.println(nameA + ":" + nameB );
-
+    if ( scoreA > scoreB)
+         pointsA=3;
+    else if(scoreA<scoreB)
+         pointsB=3;
+    else
+      {
+         pointsA=1;
+         pointsB=1;
+      }
 String [] TeamPts = { 
                      teamA.substring(0,  teamA.lastIndexOf(" ")+ 1),      //get teamA name
                      Integer.toString(pointsA),                           // get teamA points
                      teamB.substring(0,  teamB.lastIndexOf(" ")+ 1),       //teamB name
                      Integer.toString(pointsB)                            //teamB points
                     };
-
+// Returns the team names and calculated points as a string array
 return TeamPts;
 
-    }
+}
 
-   
-
-    private static void printLeagueTable(Map<String, Integer> table) {
-    
-    	Map<String, Integer> lTable = table.entrySet()
+private static void printLeagueTable(Map<String, Integer> table) {
+    Map<String, Integer> lTable = table.entrySet()
 			.stream()
 			.sorted(Collections.reverseOrder(Entry.comparingByValue()))
 			.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue(),
 					(entry1, entry2) -> entry2, LinkedHashMap::new));
-         int position =1;
-		for (Map.Entry<String, Integer> entry : lTable.entrySet()) {
+// Sorts the League table in descending order according to values (points)              
+    int position =1;
+
+// Prints the elements of the table according to the game rules.
+	for (Map.Entry<String, Integer> entry : lTable.entrySet()) {
 			System.out.println(position++  + ". " + entry.getKey() + ", " +
                                            entry.getValue().toString() + 
                                        ( ( entry.getValue() == 1)? " pt" : " pts"));
+
+
+
+
+
 		}
-    
-
-
-        /*
-        1. Tarantulas, 6 pts
-2. Lions, 5 pts
-3. FC Awesome, 1 pt
-3. Snakes, 1 pt
-5. Grouches, 0 pts
-
-        */
     }
 
 }
