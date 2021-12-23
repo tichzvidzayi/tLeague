@@ -3,7 +3,4 @@ Tarantulas 1, FC Awesome 0
 Lions 1, FC Awesome 1
 Tarantulas 3, Snakes 1
 Lions 4, Grouches 0
-Man Utd 13, Liverpool 0
-Chelsea FC 123, Watford FC99 0
-11Young Boys1804 FC 3, Bayern Munich FC 18
-Madrid FC Club -1, Barcelona 1999 Football CLub 5
+

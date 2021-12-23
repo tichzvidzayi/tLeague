@@ -42,23 +42,24 @@ class League {
                // game = game.replaceAll("\\s", "");
 
                String []result = ParseResult(game); 
-               table.computeIfAbsent(result[0], k -> Integer.parseInt(result[1]));
-               table.computeIfAbsent(result[2], k -> Integer.parseInt(result[3]));
-
+              
                table.computeIfPresent(result[0], (k, v) -> v + Integer.parseInt(result[1]));
                table.computeIfPresent(result[2], (k, v) -> v + Integer.parseInt(result[3]));
                
+               table.computeIfAbsent(result[0], k -> Integer.parseInt(result[1]));
+               table.computeIfAbsent(result[2], k -> Integer.parseInt(result[3]));
+
 
             }
             buf.close();
 
 
-            table.put("Juventus FC", 1);
+         /*   table.put("Juventus FC", 1);
            table.put("Bayern Munich FC", 80);
             table.put("Norwich City FC", 38);
             table.put("Manchester United", 100);
             table.put("Chelsea FC", 78);
-
+   */
          printLeagueTable(table);
            
         
@@ -75,10 +76,7 @@ class League {
     private static String[] ParseResult(String game) {
 
 
-        String[] res = game.split(",", 2);  //{ FC Lions 3987, Sankes 3} 
-        //{Lions 3987, Sankes3}
-         //  Ballock RT99 Footie Tarantulas 1, FC Awesome 0
-
+        String[] res = game.split(",", 2);  
 
 String teamA = res[0].trim(); // { FC Lions99 4}
 String teamB = res[1].trim();
@@ -86,21 +84,35 @@ String teamB = res[1].trim();
 
 int scoreA = Integer.parseInt( teamA.substring( teamA.lastIndexOf(" ") + 1));
 int scoreB = Integer.parseInt(teamB.substring( teamB.lastIndexOf(" ") + 1));
-System.out.println(scoreA + ":" + scoreB );
+//System.out.println(scoreA + ":" + scoreB );
+int pointsA =0, pointsB=0;
+if ( scoreA > scoreB)
+     pointsA=3;
+else if(scoreA<scoreB)
+    pointsB=3;
+else
+{
+   pointsA=1;
+   pointsB=1;
+}
 
-String nameA = teamA.substring(0,  teamA.lastIndexOf(" ")+ 1);  
-String nameB = teamB.substring(0,  teamB.lastIndexOf(" ")+ 1);  
-System.out.println(nameA + ":" + nameB );
 
+//String nameA = teamA.substring(0,  teamA.lastIndexOf(" ")+ 1);  
+//String nameB = teamB.substring(0,  teamB.lastIndexOf(" ")+ 1);  
+//System.out.println(nameA + ":" + nameB );
 
+String [] TeamPts = { 
+                     teamA.substring(0,  teamA.lastIndexOf(" ")+ 1),      //get teamA name
+                     Integer.toString(pointsA),                           // get teamA points
+                     teamB.substring(0,  teamB.lastIndexOf(" ")+ 1),       //teamB name
+                     Integer.toString(pointsB)                            //teamB points
+                    };
 
-        return null;
+return TeamPts;
+
     }
 
-    private static void AddResult(String game) {
-
-      
-    }
+   
 
     private static void printLeagueTable(Map<String, Integer> table) {
     
