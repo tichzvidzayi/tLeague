@@ -43,7 +43,7 @@ class League {
         }  catch(Exception e)
         {
             // Catches and prints the error 
-            System.out.println(e);      
+           // System.out.println(e);      
         }
           // Prints the league table
          printLeagueTable(table);      

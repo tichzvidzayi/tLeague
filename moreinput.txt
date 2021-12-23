@@ -45,3 +45,7 @@ Lions 1, Snakes 1
 2000 Future FC 3, Bayern Munich FC 2
 2000 Future FC 4, Bayern Munich FC 2
 Chelsea FC 2, Grouches 2
+Arsenal FC 0, Grouches 0
+
+
+
