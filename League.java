@@ -39,74 +39,27 @@ class League {
         BufferedReader buf = new BufferedReader(new FileReader( args[0]));
             String game;
             while ((game = buf.readLine()) != null) {
-              
-               String[] res = game.split(",", 2);  //{ Lions 3, Sankes 3}
+               // game = game.replaceAll("\\s", "");
 
+               String []result = ParseResult(game); 
+               table.computeIfAbsent(result[0], k -> Integer.parseInt(result[1]));
+               table.computeIfAbsent(result[2], k -> Integer.parseInt(result[3]));
 
-     String [] teamA = res[0].split(" ", 2);
-         String [] teamB = res[1].split(" ", 2);
-         
-         System.out.println(( res[0].split(" ", 2)[0] ));
-         System.out.println(( res[1].split(" ", 2)[0] ));
-         System.out.println(( res[0].split(" ", 2)[1] ));
-         System.out.println(( res[1].split(" ", 2)[1] ));
-
-
-        //int t1 = Integer.parseInt( res[0].split(" ", 2)[1] );
-       // int t2  =  Integer.parseInt( res[1].split(" ", 2)[1] );
-
-    
-  /*  if (  t1 > t2)
-   { 
-       if(!table.containsKey(teamA[0])) 
-       {
-        table.put(teamA[0],3);
-       }
-       else if (t2 > t1)
-           table.put(teamB[0],3);
-        else 
-        { 
-            table.put(teamA[0],3);
-            table.put(teamB[0],3);
-        }
-       
-      //  p.put(key, map.getKey()+1);
-       }  
-
-*/
-
-
-
-            /*
-
-                   Lions 3, Snakes 3
-                   Tarantulas 1, FC Awesome 0
-                    Lions 1, FC Awesome 1
-                   Tarantulas 3, Snakes 1
-                   Lions 4, Grouches 0
-
-            */
-
-
-
-
-       
-               // storing the values
-               table.put("Juventus FC", 1);
-               table.put("Bayern Munich FC", 80);
-               table.put("Norwich City FC", 38);
-               table.put("Manchester United", 100);
-               table.put("Chelsea FC", 78);
-               printLeagueTable(table);
-
-
-
-
-
-
+               table.computeIfPresent(result[0], (k, v) -> v + Integer.parseInt(result[1]));
+               table.computeIfPresent(result[2], (k, v) -> v + Integer.parseInt(result[3]));
+               
 
             }
             buf.close();
+
+
+            table.put("Juventus FC", 1);
+           table.put("Bayern Munich FC", 80);
+            table.put("Norwich City FC", 38);
+            table.put("Manchester United", 100);
+            table.put("Chelsea FC", 78);
+
+         printLeagueTable(table);
            
         
         
@@ -117,6 +70,31 @@ class League {
 
 
         
+    }
+
+    private static String[] ParseResult(String game) {
+
+
+        String[] res = game.split(",", 2);  //{ FC Lions 3987, Sankes 3} 
+        //{Lions 3987, Sankes3}
+         //  Ballock RT99 Footie Tarantulas 1, FC Awesome 0
+
+
+String teamA = res[0].trim(); // { FC Lions99 4}
+String teamB = res[1].trim();
+//  int t1 = Integer.parseInt( res[0].split(" ", 2)[1] );
+
+int scoreA = Integer.parseInt( teamA.substring( teamA.lastIndexOf(" ") + 1));
+int scoreB = Integer.parseInt(teamB.substring( teamB.lastIndexOf(" ") + 1));
+System.out.println(scoreA + ":" + scoreB );
+
+String nameA = teamA.substring(0,  teamA.lastIndexOf(" ")+ 1);  
+String nameB = teamB.substring(0,  teamB.lastIndexOf(" ")+ 1);  
+System.out.println(nameA + ":" + nameB );
+
+
+
+        return null;
     }
 
     private static void AddResult(String game) {
