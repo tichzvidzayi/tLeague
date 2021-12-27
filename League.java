@@ -6,16 +6,20 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 /*
         Author : Tichaona Zvidzayi
-        Date Last Modified  23 December 2021
+        Date Last Modified  27 December 2021
         Description: A Java CLI application that calculates League results according to results
             Win = 3pts, Lose = 0pts, Draw =1
 
         Compile using :   javac League.java
         Run           :   java League <input file>
+
+
+                      :   java league moreinput.txt
 */
 
 class League {
@@ -46,7 +50,12 @@ class League {
            // System.out.println(e);      
         }
           // Prints the league table
-         printLeagueTable(table);      
+
+      Map<String, Integer> treeMap = new TreeMap<String, Integer>(table);
+     //Modified to alphabetical sort the table
+
+          
+         printLeagueTable(treeMap);      
     }
 
 private static String[] ParseResult(String game) {
@@ -82,6 +91,7 @@ return TeamPts;
 }
 
 private static void printLeagueTable(Map<String, Integer> table) {
+   
     Map<String, Integer> lTable = table.entrySet()
 			.stream()
 			.sorted(Collections.reverseOrder(Entry.comparingByValue()))
