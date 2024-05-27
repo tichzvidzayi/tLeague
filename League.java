@@ -1,4 +1,5 @@
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,7 +31,7 @@ class League {
         // The try catches exceptions such as IndexOutofRange, IOExceptions etc and print the error
         try {  
             buf = new BufferedReader(new FileReader( args[0]));   
-            while ((game = buf.readLine()) != null)
+            while ((game = BoundedLineReader.readLine(buf, 5_000_000)) != null)
              {
                String []result = ParseResult(game); 
                // Computes the points is already present 
