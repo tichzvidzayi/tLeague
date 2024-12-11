@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
 /*
         Author : Tichaona Zvidzayi
         Date Last Modified  27 December 2021
@@ -31,9 +32,8 @@ class League {
         try {  
             buf = new BufferedReader(new FileReader( args[0]));   
             while ((game = buf.readLine()) != null)
-             {
-               String []result = ParseResult(game); 
-               // Computes the points is already present 
+             {     // Computes the points is already present 
+               String []result = ParseResult(game);     
                table.computeIfPresent(result[0], (k, v) -> v + Integer.parseInt(result[1]));
                table.computeIfPresent(result[2], (k, v) -> v + Integer.parseInt(result[3]));
                
